@@ -11,8 +11,8 @@ function onReady() {
     });
 
     // load data from the server, put it on the DOM
-    // getArtist();
-    // getSong();    
+    getArtist();
+    getSong();  
 }
 
 function addArtist() {

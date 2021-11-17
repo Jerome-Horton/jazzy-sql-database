@@ -17,6 +17,7 @@ CREATE TABLE song (
     "released" date
 ); 
 
+
 INSERT INTO artist (name, birthdate)
 VALUES ('Ella Fitzgerald', '04-25-1917'),
 ('Dave Brubeck', '12-06-1920'),

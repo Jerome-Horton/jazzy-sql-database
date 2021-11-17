@@ -9,8 +9,8 @@ const Pool = pg.Pool;
 // Create our pool object using the above constructor:
 const pool = new Pool({
     database: 'jazzy_sql', // the name of database, This can change!
-    user: 'postgres' 
-    host: 'Localhost', // where is your database?
+    user: 'postgres',
+    host: 'Localhost' // where is your database?
     // port: 5432, // the port for your database, 5432 is default for postgres
     // max: 10, // how many connections (queries) at one time
     // idleTimeoutMillis: 30000 // 30 second to try to connect, otherwise cancel query
