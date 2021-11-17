@@ -31,9 +31,30 @@ router.get('/', (req, res) => {
     });
 })
 
+
 router.post('/', (req, res) => {
-  song.push(req.body);
-  res.sendStatus(201);
+  const newSong = req.body;
+  const sqlText = (`
+    INSERT INTO "song"
+      ("name", "birthdate")
+    VALUES
+      ($1, $2,);
+  `)
+  const sqlValues = [
+    newSong.name,
+    newSong.birthdate
+  ]
+  console.log(sqlText)
+  pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+      console.log(dbRes);
+      res.sendStatus(201);  // OK, CREATED
+    })
+    .catch((dbErr) => {
+      console.error(dbErr);
+    })
 });
 
+
 module.exports = router;
+
