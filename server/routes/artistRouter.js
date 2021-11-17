@@ -25,8 +25,9 @@ const router = express.Router();
  // Hey! Write some code here! Go get some data from your database!
 
  router.get('/', (req, res) => {
+    console.log('GET /artist');
     // Hey! Write some code here! Go get some data from your database!
-     const sqlText = 'SELECT * FROM artist;'
+     const sqlText = 'SELECT * FROM artist ORDER BY birthdate DESC;'
      pool.query(sqlText)
        .then((dbRes) => {
          const artistFromDb = dbRes.rows;
@@ -38,17 +39,17 @@ const router = express.Router();
    
    
    router.post('/', (req, res) => {
+    console.log('GET /artist');
      const newArtist = req.body;
      const sqlText = (`
        INSERT INTO "artist"
-         ("title", "length", "released")
+       ("name", "birthdate")
        VALUES
-         ($1, $2, $3);
+         ($1, $2);
      `)
      const sqlValues = [
-       newArtist.title,
-       newArtist.length,
-       newArtist.released
+       newArtist.name,
+       newArtist.birthdate
      ]
      console.log(sqlText)
      pool.query(sqlText, sqlValues)
