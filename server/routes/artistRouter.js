@@ -2,24 +2,24 @@ const express = require('express');
 const router = express.Router();
 
 
-const artistList = [ 
-    {
-        name: 'Ella Fitzgerald',
-        birthdate: '04-25-1917'
-    },
-    {
-        name: 'Dave Brubeck',
-        birthdate: '12-06-1920'
-    },       
-    {
-        name: 'Miles Davis',
-        birthdate: '05-26-1926'
-    },
-    {
-        name: 'Esperanza Spalding',
-        birthdate: '10-18-1984'
-    },
-]
+// const artistList = [ 
+//     {
+//         name: 'Ella Fitzgerald',
+//         birthdate: '04-25-1917'
+//     },
+//     {
+//         name: 'Dave Brubeck',
+//         birthdate: '12-06-1920'
+//     },       
+//     {
+//         name: 'Miles Davis',
+//         birthdate: '05-26-1926'
+//     },
+//     {
+//         name: 'Esperanza Spalding',
+//         birthdate: '10-18-1984'
+//     },
+// ]
 
 // Require the pg module:
 const pg = require('pg');
@@ -46,13 +46,21 @@ pool.on('error', (error) => {
     console.log('Error with postgres pool', error)
 });
 
-router.get('/', (req, res) => {
  // Hey! Write some code here! Go get some data from your database!
- res.send(artist);
-});
+ router.get('/', (req, res) => {
+    const sqlText = 'SELECT * FROM artist;'
+    pool.query(sqlText)
+      .then((dbRes) => {
+        const artistFromDb = dbRes.rows;
+        res.send(artistFromDb)
+      }).catch((dbErr) => {
+        console.error(dbErr);
+      });
+  });
 
 router.post('/', (req, res) => {
-    artistList.push(req.body);
+    artist.push(req.body);
     res.sendStatus(201);
 });
 
+module.exports = router;
