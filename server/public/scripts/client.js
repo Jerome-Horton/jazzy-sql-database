@@ -11,8 +11,8 @@ function onReady() {
     });
 
     // load data from the server, put it on the DOM
-    getArtists();
-    getSongs();    
+    // getArtist();
+    // getSong();    
 }
 
 function addArtist() {
@@ -31,7 +31,7 @@ function addArtist() {
         data: artistToSend
     }).then(function(response) {
         console.log(response);
-        getArtists();
+        getArtist();
     }).catch(function(error) {
         console.log('error in artist post', error); 
         alert('Error adding artist. Please try again later.')       
@@ -68,6 +68,7 @@ function getArtists() {
         method: 'GET',
         url: '/artist'
     }).then(function(response) {
+  
         const listOfArtists = response;
         renderArtists(response);
     }).catch(function (error) {
